@@ -1,5 +1,5 @@
 FROM fulcrum/centos
-MAINTAINER Kenn Herman "kenn@ifsight.com"
+MAINTAINER IF Fulcrum "fulcrum@ifsight.net"
 
 RUN echo "Cache bust 201604291406" && \
     groupadd -g 1971 nginx && useradd -d /var/lib/nginx -g nginx -M -n -s /sbin/nologin -u 1971 nginx && \
