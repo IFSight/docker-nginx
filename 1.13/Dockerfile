@@ -49,6 +49,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		--with-http_v2_module \
 		--with-ipv6 \
 		--add-module=/usr/src/ngx_brotli \
+		--add-module=/usr/src/nginx-module-vts \
                 --with-cc-opt=-Wno-error \
 	" \
 	&& addgroup -S nginx \
@@ -76,6 +77,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		cmake \
 	&& mkdir -p /usr/src \
 	&& cd /usr/src \
+	&& git clone git://github.com/vozlt/nginx-module-vts.git \
 	&& git clone --recursive https://github.com/google/ngx_brotli.git \
 	&& cd ngx_brotli \
 	&& git checkout -b $NGX_BROTLI_COMMIT $NGX_BROTLI_COMMIT \
