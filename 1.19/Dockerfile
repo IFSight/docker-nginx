@@ -1,10 +1,9 @@
 # taken from https://github.com/fholzer/docker-nginx-brotli
-FROM alpine:3.11
+FROM alpine:3.12
 LABEL maintainer="IF Fulcrum <fulcrum@ifsight.net>"
 
-ENV BUILDDATE 202006031618
-ENV NGINX_VERSION 1.17.10
-#ENV NGX_BROTLI_COMMIT e505dce68acc190cc5a1e780a3b0275e39f160ca
+ENV BUILDDATE 202006011816
+ENV NGINX_VERSION 1.19.0
 ENV NGX_BROTLI_COMMIT 25f86f0bac1101b6512135eac5f93c49c63609e3
 
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
@@ -150,7 +149,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
     # forward request and error logs to docker log collector
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log \
-    && deluser nginx && adduser -h /var/www/html -s /sbin/nologin -D -H -u 1971 nginx
+	&& deluser nginx && adduser -h /var/www/html -s /sbin/nologin -D -H -u 1971 nginx
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
@@ -160,4 +159,3 @@ EXPOSE 80 443
 STOPSIGNAL SIGTERM
 
 CMD ["nginx", "-g", "daemon off;"]
-
